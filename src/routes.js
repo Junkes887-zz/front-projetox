@@ -8,8 +8,8 @@ export default function Reoutes() {
     return (
         <BrowserRouter>
             <Route path="/" exact component={Main} />
-            <Route path="/:id" component={EventDetail} />
-            <Route path="/login" component={Login} />
+            <Route path="/event/:id" exact component={EventDetail} />
+            <Route path="/login" exact component={Login} />
         </BrowserRouter>
     )
 }
