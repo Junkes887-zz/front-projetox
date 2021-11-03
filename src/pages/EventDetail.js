@@ -22,14 +22,6 @@ export default function EventDetail({history, id}) {
         loadEvent()
     }, [])
 
-
-    // const event = {
-    //         id: 1,
-    //         name: 'Evento 01',
-    //         description: 'Descrição do evento 01',
-    //         value: 30.00
-    //     }
-
     return (
         <>
             <Header/>
