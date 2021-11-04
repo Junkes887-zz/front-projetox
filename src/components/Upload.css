@@ -1,0 +1,10 @@
+.dropzone-container {
+    max-width: 700px;
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    border: 2px dashed #ddd;
+    margin: 30px auto;
+    align-items: center;
+}
