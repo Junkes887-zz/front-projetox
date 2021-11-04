@@ -4,12 +4,13 @@ import './Upload.css';
 
 export default function Upload() {
     const [errorFile, setErrorFile ] = useState('');
-    const [imageFile, setImageFile ] = useState({});
+    const [imageFile, setImageFile ] = useState([]);
 
     const img = {
         display: 'block',
         width: 'auto',
-        height: '100%'
+        height: '100%',
+        width: '100%',
     };
   
 
@@ -21,9 +22,20 @@ export default function Upload() {
         setErrorFile("")
         let formData = new FormData()
         formData.append('uploadedFiles', acceptedFile)
-        setImageFile(acceptedFile.map(file => Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })));
+        acceptedFile.map(file => {
+            const {name, size} = file
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onloadend = () => {
+                const preview = reader.result
+                const image = {name, size, preview}
+
+                setImageFile((prevImage) => {
+                    return image
+                })
+            }
+
+        })
     }, [])
 
     const {getRootProps, getInputProps, isDragAccept} = useDropzone({
@@ -37,12 +49,13 @@ export default function Upload() {
         <input {...getInputProps()} />
         {
             
+            imageFile.length == 0 ?
                 errorFile == "" ?
                     <p>Adicione uma imagem aqui...</p> :
                     <p>{errorFile}</p>
+                : <img src={imageFile.preview} style={img}/>
         }
 
-        <img src={imageFile.preview} style={img}/>
     </div>
   )
 }
