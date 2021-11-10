@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import {useDropzone} from 'react-dropzone'
 import './Upload.css';
 
-export default function Upload() {
+export default function Upload(props) {
     const [errorFile, setErrorFile ] = useState('');
     const [imageFile, setImageFile ] = useState([]);
 
@@ -22,6 +22,7 @@ export default function Upload() {
         setErrorFile("")
         let formData = new FormData()
         formData.append('uploadedFiles', acceptedFile)
+        props.setValue(acceptedFile)
         acceptedFile.map(file => {
             const {name, size} = file
             const reader = new FileReader()
