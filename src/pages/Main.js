@@ -29,7 +29,7 @@ export default function Main({history}) {
                     <ul>
                         {events.map(event => (
                             <li key={event.id}>
-                                <img src={imgEvent} alt={event.name}></img>
+                                <img src={`data:image/jpeg;base64,${event.image}`} alt={event.name}></img>
                                 <footer>
                                     <strong>{event.name}</strong>
                                     <p>{event.description}</p>
