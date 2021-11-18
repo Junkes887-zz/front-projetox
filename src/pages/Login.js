@@ -25,8 +25,8 @@ export default function Login() {
             <Header showLogin="false"/>
             <main>
                 <fieldset>
-                    <Input name="emailOrName" label="Email or Name" value={emailOrName} setValue={setEmailOrName}/>
-                    <Input name="pass" label="Password" value={pass} setValue={setPass}/>
+                    <Input name="emailOrName" label="Email ou nome" value={emailOrName} setValue={setEmailOrName}/>
+                    <Input name="pass" label="Senha" value={pass} setValue={setPass}/>
                 </fieldset>
 
                 <footer>

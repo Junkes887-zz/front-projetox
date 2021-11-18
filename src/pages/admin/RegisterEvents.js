@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 
 import Upload from '../../components/Upload'
 import Input from '../../components/Input'
+import InputDate from '../../components/InputDate'
+import InputNumber from '../../components/InputNumber'
+import InputCurrency from '../../components/InputCurrency'
 
 import './RegisterEvents.css'
 import api from '../../services/api'
+import Header from '../../components/Header'
 
-const RegisterEvents = () => {
+const RegisterEvents = (props) => {
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ ticketAmount, setTicketAmount ] = useState('');
@@ -22,30 +26,33 @@ const RegisterEvents = () => {
             description,
             'ticket_amount': ticketAmount,
             'ticket_value': ticketValue,
-            'event_date': eventDate
+            'event_date': new Date(eventDate)
         })
         formData.append('data', String(data))
         formData.append('image', image[0])
         api.post('/events', formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-        }}).then(console.log)
+        }}).then(() => {
+            props.history.push('/')
+        })
     }
 
 
     return (
         <div className="register-evente-container">
+            <Header/>
             <main>
                 <Upload setValue={setImage}/>
-                <Input name="name" label="Name" value={name} setValue={setName}/>
-                <Input name="description" label="Description" value={description} setValue={setDescription}/>
-                <Input name="ticketAmount" label="Ticket Amount" value={ticketAmount} setValue={setTicketAmount}/>
-                <Input name="ticketValue" label="Ticket Value" value={ticketValue} setValue={setTicketValue}/>
-                <Input name="eventDate" label="Data" value={eventDate} setValue={setEventDate}/>
+                <Input name="name" label="Nome do evento" value={name} setValue={setName}/>
+                <Input name="description" label="Descrição" value={description} setValue={setDescription}/>
+                <InputNumber name="ticketAmount" label="Número de ingressos" value={ticketAmount} setValue={setTicketAmount}/>
+                <InputCurrency name="ticketValue" label="Valor do ingresso" value={ticketValue} setValue={setTicketValue}/>
+                <InputDate name="eventDate" label="Data do evento" value={eventDate} setValue={setEventDate}/>
 
                 <footer>
                     <button type="button" onClick={() => save()}>
-                        Salvar
+                        Criar
                     </button>
                 </footer>
             </main>

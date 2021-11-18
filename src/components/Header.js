@@ -10,7 +10,12 @@ export default function Header(props) {
             <div className="space"></div>
 
             {props.showLogin !== "false" ?
-                (<Link className="login" to="/login" >Logar</Link>) : null
+                (<Link className="header-links" to="/login" >Logar</Link>) : null
+            }
+
+
+            {props.isAdmin !== "false" ?
+                (<Link className="header-links" to="/event" >Cadastrar eventos</Link>) : null
             }
         </div>
     )

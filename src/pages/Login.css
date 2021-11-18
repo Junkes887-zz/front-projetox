@@ -11,6 +11,7 @@
     margin: -3.2rem auto 3.2rem;
     padding-top: 2.4rem;
     overflow: hidden;
+    margin-top: 2.4rem;
 }
 
 #login-form main fieldset {

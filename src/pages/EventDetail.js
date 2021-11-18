@@ -5,16 +5,16 @@ import imgEvent from './evento.jpeg'
 import './EventDetail.css'
 import api from '../services/api';
 
-export default function EventDetail({history, id}) {
+export default function EventDetail(props) {
     const [event, setEvent] = useState({});
 
     async function back() {
-        history.push('/')
+        props.history.push('/')
     }
 
     useEffect(() => {
         async function loadEvent() {
-            debugger
+            const id = props.location.id
             const resp = await api.get(`/events/${id}`)
             setEvent(resp.data.data)
         }
@@ -26,13 +26,14 @@ export default function EventDetail({history, id}) {
         <>
             <Header/>
             <div className="event-detail-container">
-                <img src={imgEvent} alt={event.name}></img>
+                <img src={`data:image/jpeg;base64,${event.image}`} alt={event.name}></img>
                 <footer>
                     <div className="detail">
                         <strong>{event.name}</strong>
-                        <p>{event.description}</p>
-                        <p className="valor">Quantidade de ingressos: {event.ticket_amount}</p>
-                        <p className="valor">Valor: {event.ticket_value}</p>
+                        <p className="description">{event.description}</p>
+                        <br></br>
+                        <p className="quantidade-valor">Quantidade de ingressos: {event.ticket_amount}</p>
+                        <p className="quantidade-valor">Valor: R$ {event.ticket_value}</p>
                     </div>
                     <div className="buttons">
                         <button className="buy">Comprar</button>

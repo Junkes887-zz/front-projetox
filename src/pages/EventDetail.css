@@ -8,7 +8,7 @@
 }
 
 .event-detail-container img{
-    max-width: 40%;
+    min-width: 50%;
     border-radius:  5px 5px 0 0;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -31,7 +31,6 @@
 .event-detail-container footer p {
     font-size: 20px;
     line-height: 20px;
-    color: #999;
     margin-top: 5px;
 }
 
@@ -41,9 +40,9 @@
 
 .buttons {
     max-width: 980px;
-    padding: 50px 0;
     text-align: center;
     margin: auto;
+    display: flex;
 }
 
 .buttons button {
@@ -62,4 +61,12 @@
 
 .buttons .back {
     background-color: rgb(199, 9, 9);
+}
+
+.description {
+    color: #424242;
+}
+
+.quantidade-valor {
+    color: #999;
 }

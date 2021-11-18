@@ -5,11 +5,14 @@ import Header from '../components/Header';
 import imgEvent from './evento.jpeg'
 import api from '../services/api';
 
-export default function Main({history}) {
+export default function Main(props) {
     const [events, setEvents] = useState([]);
 
     async function showEventDetail(id) {
-        history.push(`/event/${id}`)
+        props.history.push({
+            pathname: `/event/${id}`,
+            id: id,
+          })
     }
 
     useEffect(() => {

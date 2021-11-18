@@ -11,7 +11,7 @@ export default function Reoutes() {
             <Route path="/" exact component={Main} />
             <Route path="/event/:id" exact component={EventDetail} />
             <Route path="/login" exact component={Login} />
-            <Route path="/add" exact component={RegisterEvents} />
+            <Route path="/event" exact component={RegisterEvents} />
         </BrowserRouter>
     )
 }

@@ -10,7 +10,7 @@
 }
 
 .space {
-    min-width: 80%;
+    flex: 1;
 }
 
 .home {
@@ -20,14 +20,15 @@
     font-weight: bold;
 }
 
-.login {
+.header-links {
     color: #288BE4;
     background-color: #FFF;
     font-weight : bold ;
     border: 0;
     border-radius: 10px;
-    width: 100px;
+    min-width: 190px;
     text-align: center;
     text-decoration: none;
     padding-top: 5px;
+    margin-left: 10px;
 }

@@ -9,8 +9,9 @@ main {
     max-width: 70rem;
     border-radius: 0.8rem;
     margin: -3.2rem auto 3.2rem;
-    padding-top: 2.4rem;
+    padding: 2.4rem;
     overflow: hidden;
+    margin-top: 2.4rem;
 }
 
 button {
