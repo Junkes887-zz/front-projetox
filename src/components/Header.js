@@ -15,10 +15,12 @@ export default function Header() {
         localStorage.removeItem('isAuthenticated')
         localStorage.removeItem('isAdmin')
         localStorage.removeItem('user')
+        localStorage.removeItem('promoter_id')
         
         localStorage.setItem('isAuthenticated', false)
         localStorage.setItem('isAdmin', false)
         localStorage.setItem('user', null)
+        localStorage.setItem('promoter_id', null)
     }
 
     return (
@@ -26,7 +28,7 @@ export default function Header() {
             <Link className="home" to="/" >Blablabla Eventos</Link>
             <div className="space"></div>
 
-            <h2 className="name-header">{user ? user.name : ''}</h2>
+            <h2 className="name-header">{user ? 'Olá, ' + user.name : ''}</h2>
             { !isAuthenticated ?
                 (<Link className="header-links" to="/login" >Logar</Link>) : null
             }

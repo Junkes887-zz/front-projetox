@@ -21,6 +21,12 @@ export default function PromoterList (props) {
     }, [])
 
     const deletePromoter = async (id) => {
+        const promoter_id = localStorage.getItem('promoter_id')
+        if(id == promoter_id) {
+            alert('Você não pode se deletar!')
+            return
+        }
+        debugger
         const resp = await api.delete('/promoters/' + id)
 
         loadPromoters()
@@ -50,7 +56,7 @@ export default function PromoterList (props) {
                                     <td><p>{event.user.name}</p></td>
                                     <td><p>{event.user.email}</p></td>
                                     <td>
-                                        <button className="btn-delete" onClick={deletePromoter(event.id)}>Excluir</button>
+                                        <button className="btn-delete" onClick={() => deletePromoter(event.id)}>Excluir</button>
                                     </td>
                                 </tr>
                             ))}    

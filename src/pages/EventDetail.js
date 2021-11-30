@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 
-import imgEvent from './evento.jpeg'
 import './EventDetail.css'
 import api from '../services/api';
 
 export default function EventDetail(props) {
     const [event, setEvent] = useState({});
+    const [user, setUser] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') == 'true');
 
     async function back() {
         props.history.push('/')
+    }
+
+    async function buy() {
+        if(isAuthenticated) {
+            const resp = await api.post('/tickets', {
+                event_id: event.id,
+                user_id: user.id
+            })
+
+            props.history.push({
+                pathname: `/ticket/${resp.data.data.id}`,
+                id: resp.data.data.id,
+            })
+
+            return
+        }
+        alert('Você precisa estar logado.')
+        props.history.push('/login')
     }
 
     useEffect(() => {
@@ -36,7 +55,7 @@ export default function EventDetail(props) {
                         <p className="quantidade-valor">Valor: R$ {event.ticket_value}</p>
                     </div>
                     <div className="buttons">
-                        <button className="buy">Comprar</button>
+                        <button className="buy" onClick={() => buy()}>Comprar</button>
                         <button className="back" onClick={() => back()}>Voltar</button>
                     </div>
                 </footer>

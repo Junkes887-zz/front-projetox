@@ -20,8 +20,9 @@ const RegisterEvents = (props) => {
 
     async function save() {
         const formData = new FormData()
+        const promoter_id = localStorage.getItem('promoter_id')
         const data = JSON.stringify({
-            'promoter_id': 1,
+            'promoter_id': promoter_id,
             name,
             description,
             'ticket_amount': ticketAmount,

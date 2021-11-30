@@ -16,6 +16,7 @@ export default function Login(props) {
             pass
         }).then((response) => {
             localStorage.setItem('isAuthenticated', true)
+            localStorage.setItem('promoter_id', response.data.data.promoter_id)
             localStorage.setItem('user', JSON.stringify(response.data.data.user))
             if (response.data.data.admin == true) {
                 localStorage.setItem('isAdmin', true)
