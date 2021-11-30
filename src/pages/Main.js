@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Main.css';
 import Header from '../components/Header';
 
-import imgEvent from './evento.jpeg'
 import api from '../services/api';
 
 export default function Main(props) {

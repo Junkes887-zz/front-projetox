@@ -26,7 +26,7 @@ const RegisterEvents = (props) => {
             description,
             'ticket_amount': ticketAmount,
             'ticket_value': ticketValue,
-            'event_date': new Date(eventDate)
+            'event_date': new Date(eventDate).toISOString().slice(0, 10)
         })
         formData.append('data', String(data))
         formData.append('image', image[0])

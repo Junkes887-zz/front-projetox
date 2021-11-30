@@ -1,38 +1,54 @@
 import React, { useState } from 'react'
 
-import Header from '../components/Header';
 import Input from '../components/Input';
 
 import api from '../services/api'
 
 import './Login.css'
 
-export default function Login() {
-    const [ emailOrName, setEmailOrName ] = useState('');
+export default function Login(props) {
+    const [ email, setEmail ] = useState('');
     const [ pass, setPass ] = useState('');
 
     async function logar() {
-        const resp = await api.post('/logins/users', {
-            emailOrName,
+        const resp = await api.post('/logins', {
+            email_or_name: email,
             pass
+        }).then((response) => {
+            localStorage.setItem('isAuthenticated', true)
+            localStorage.setItem('user', JSON.stringify(response.data.data.user))
+            if (response.data.data.admin == true) {
+                localStorage.setItem('isAdmin', true)
+            } else {
+                localStorage.setItem('isAdmin', false)                
+            }
+            props.history.push('/')      
+        }).catch(() => {
+            localStorage.setItem('isAuthenticated', false)
+            localStorage.setItem('isAdmin', false)
+            alert('Dados incorretos')
         })
-        console.log(resp.status)
+    }
+
+    async function back() {
+        props.history.push('/')
     }
 
 
     return (
         <div id="login-form">
-            <Header showLogin="false"/>
             <main>
+                <h2>Login</h2>
                 <fieldset>
-                    <Input name="emailOrName" label="Email ou nome" value={emailOrName} setValue={setEmailOrName}/>
+                    <Input name="email" label="Email" value={email} setValue={setEmail}/>
                     <Input name="pass" label="Senha" value={pass} setValue={setPass}/>
                 </fieldset>
 
                 <footer>
-                    <button type="button" onClick={() => logar()}>
-                        Logar
-                    </button>
+                    <div className="lits-buttons">
+                        <button className="logar" type="button" onClick={() => logar()}>Logar</button>
+                        <button className="back" onClick={() => back()}>Voltar</button>
+                    </div>
                 </footer>
             </main>
         </div>
