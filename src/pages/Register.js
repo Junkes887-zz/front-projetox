@@ -40,7 +40,7 @@ export default function Register(props) {
                 </fieldset>
 
                 <footer>
-                    <div className="buttons">
+                    <div className="lits-buttons">
                         <button className="logar" type="button" onClick={() => criar()}>Criar</button>
                         <button className="back" onClick={() => back()}>Voltar</button>
                     </div>
